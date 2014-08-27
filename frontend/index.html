@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!-- get the title from the IndexController -->
+
+    <title>Billing System</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+  <body style="align:left;">
+  
+    </script>
+    <script type="text/x-handlebars" data-template-name="application">
+	<div class="emberup">
+      <nav class="rich-a">
+          {{#link-to 'addbilling'}}Home{{/link-to}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          {{#link-to 'list' 0}}Reports{{/link-to}}
+      </nav>
+      {{outlet}}
+   </script>
+    
+    <script type="text/x-handlebars" data-template-name="list">
+	<div class="invc">
+        Search the system
+        <h2>Invoices</h2>
+       <div class="sucs-rcd"> {{error}}</div>
+		<div class="invc-tbl">
+        <table style=" background-repeat:no-repeat; width:100%;margin:0;"  cellpadding="5" cellspacing="5" border="0">
+                   <tr>
+                        <th width="14%">Invoice Number</th>
+                        <th width="15%">VendorName</th>
+                        <th width="15%">Date</th>
+                        <th width="10%">Amount</th>
+                        <th width="10%">Category</th>
+                        <th width="20%">Description</th>
+                        <th width="20%">Images</th>
+                   </tr>    
+            {{#each categories}}
+              {{Name}}
+              {{/each}}
+          {{#each billings}}
+                   <tr>
+                   <td>
+                                <p style=" margin:0;">{{this.invoiceNumber}}</p>
+                         </td>
+                       <td>
+                    
+                                <p style=" margin:0;">{{this.vendorName}}</p>
+                         </td>
+                         
+                         <td>
+                                <p style=" margin:0;">{{this.date}}</p>
+                         </td>
+                         <td>
+                                <p style=" margin:0;">{{this.amount}}</p>
+                         </td>
+                         <td width="10%" >
+                                <p style=" margin:0;">
+                                
+                                {{this.category}}</p>
+                         </td>
+                         <td >
+                                <p style=" margin:0;">{{this.description}}</p>
+                         </td>
+                         <td colspan="3" style="float:right;width:160px;">
+                         {{#if this.image1}}
+                            <img height="50" width="50" src="{{unbound this.image1}}"/>
+                         {{else}}
+                            <img height="50" width="50" src="uploads/crossicon.png"/>
+                         {{/if}}
+                         
+                         {{#if this.image2}}
+                            <img height="50" width="50" src="{{unbound this.image2}}"/>
+                         {{else}}
+                            <img height="50" width="50" src="uploads/crossicon.png"/>
+                         {{/if}}
+                         
+                         {{#if this.image3}}
+                             <img height="50" width="50" src="{{unbound this.image3}}"/>
+                         {{else}}
+                            <img height="50" width="50" src="uploads/crossicon.png"/>
+                         {{/if}}
+                        
+                       
+                   </tr>
+          {{else}}
+            No Bill Found!!
+          {{/each}}
+           </table>
+		   </div>
+		   </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="addbilling">
+    <section id="todoapp">
+      <header id="header">
+        <h1>Add  Billing </h1>
+		<div class="billing-fld">	
+			<div class="cmn-frm">	
+         <div class="al-rqrd"> <p>{{errors}}</p></div>
+          <p>
+             <label>Invoice Number</label>
+             {{view Billing.newInvoiceNumber value=newInvoiceNumber}} 
+          </p>
+          <p>
+             <label>Vendor Name</label>
+                {{input id="newvendors"   value=newVendorName}}
+          </p>
+          <p>
+            <label>Date</label>
+             {{view Billing.newDate  value=newDate}}
+          </p>
+          <p>
+            <label>Amount</label>
+            {{input   value=newAmount}}
+          </p>
+           <p>
+            <label>Category</label>
+             {{view Ember.Select value=newCategory
+       content=categories
+       optionValuePath="content.id"
+       optionLabelPath="content.Name"}}
+          </p>
+		   <p>
+             <button {{action "createBilling"}} class="destroy">Add New</button>
+          </p>
+		  </div>
+          <div class="cmn-frm right-frm">
+           <p>
+            <label>Description</label>
+            {{textarea value=newDescription}}
+          </p>
+          {{input type="hidden"  id="Image1" value=newImage1 }}
+          <input id="inputFileToLoad" type="file" onchange="encodeImageFileAsURL('Image1','inputFileToLoad');" />
+          {{input type="hidden"  id="Image2" value=newImage2 }}
+          <input id="inputFileToLoad1" type="file" onchange="encodeImageFileAsURL('Image2','inputFileToLoad1');" />
+          {{input type="hidden"  id="Image3" value=newImage3 }}
+          <input id="inputFileToLoad2" type="file" onchange="encodeImageFileAsURL('Image3','inputFileToLoad2');" />
+          
+<div id="imgTest"></div>
+         
+		  </div>
+      </header>
+
+      <section id="main">
+        {{outlet}}
+      </section>
+    </section>
+	</div>
+    </script>
+    <!-- library scripts-->
+  
+
+    
+    <script src="/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="/vendor/handlebars/handlebars.js"></script>
+    <script src="/vendor/ember/ember.js"></script>
+    <script src="/vendor/ember-data/ember-data.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+    <script src="application.js"></script>
+    <script src="validations/application.js"></script>
+    <script src="routes/router.js"></script>
+    <script src="models/billing.js"></script>
+    <script src="models/vendor.js"></script>
+    <script src="models/category.js"></script>
+    <script src="http://dbushell.github.io/Pikaday/pikaday.js"></script>
+    <script src="controllers/billing_controller.js"></script>
+    <script src="views/edit_todo_view.js"></script>
+        <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  </body>
+</html>

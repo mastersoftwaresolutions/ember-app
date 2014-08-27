@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!-- get the title from the IndexController -->
+
+    <title>Billing System</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+  <body>
+    </script>
+    <script type="text/x-handlebars" data-template-name="application">
+      <nav>
+          {{#link-to 'addbilling'}}Home{{/link-to}}
+          {{#link-to 'list'}}List{{/link-to}}
+      </nav>
+      {{outlet}}
+   </script>
+    
+    <script type="text/x-handlebars" data-template-name="list">
+        <h2>List of All Bills</h2>
+        
+           {{#each billings}}
+           
+                <label>Invoice Number :- {{InvoiceNumber}}</label><br/>
+                <label>VendorName :- {{VendorName}}</label><br/>
+                <label>Date :- {{Date}}</label> <br/>
+                <label>Amount :- {{Amount}}</label><br/>
+                <label>Category :- {{Category}}</label><br/>
+                <label>Description :- {{Description}}</label><br/>
+                <br/><br/>
+          {{else}}
+          No Bill Found!!
+           {{/each}}
+        
+
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="addbilling">
+    <section id="todoapp">
+      <header id="header">
+        <h1>Add Billing</h1>
+          <p>
+             <label>Invoice Number</label>
+             {{input type="text" id="InvoiceNumber" placeholder="" value=newInvoiceNumber}} 
+          </p>
+          <p>
+             <label>Vendor Name</label>
+                {{input type="text" id="VendorName" placeholder="" value=newVendorName}}
+          </p>
+          <p>
+            <label>Date</label>
+            {{input type="text" id="Date" placeholder="" value=newDateOfBilling}}
+          </p>
+          <p>
+            <label>Amount</label>
+            {{input type="text" id="Amount" placeholder="" value=newAmount}}
+            
+          </p>
+           <p>
+            <label>Category</label>
+            {{input type="text" id="Category" placeholder="" value=newCategory}}
+            
+          </p>
+           <p>
+            <label>Description</label>
+            {{input type="text" id="Description" placeholder="" value=newDescription}}
+            
+          </p>
+          <p>
+             <button {{action "createBilling"}} class="destroy">Add New</button>
+          </p>
+      </header>
+
+      <section id="main">
+        {{outlet}}
+      </section>
+    </section>
+    </script>
+    <!-- library scripts-->
+    <script src="/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="/vendor/handlebars/handlebars.js"></script>
+    <script src="/vendor/ember/ember.js"></script>
+    <script src="/vendor/ember-data/ember-data.js"></script>
+    <script src="application.js"></script>
+    <script src="routes/router.js"></script>
+    <script src="models/todo.js"></script>
+    <script src="controllers/todos_controller.js"></script>
+    <script src="controllers/todo_controller.js"></script>
+    <script src="views/edit_todo_view.js"></script>
+  </body>
+</html>

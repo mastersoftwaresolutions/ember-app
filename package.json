@@ -1,0 +1,22 @@
+{
+  "name": "ember-node-todo",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/npm/npm.git"
+  },
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "Razvan",
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "body-parser": "^1.0.2",
+    "cookie-parser": "~1.0.1",
+    "express": "4.1.0",
+    "mongoose": "~3.8.8",
+    "morgan": "~1.0.0",
+    "static-favicon": "~1.0.0"
+  }
+}

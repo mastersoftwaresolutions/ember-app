@@ -1,0 +1,12 @@
+Billing.Bill = DS.Model.extend({
+	InvoiceNumber: DS.attr('string'),
+	VendorName: DS.attr('string'),
+	Date: DS.attr('string'),
+	Amount: DS.attr('string'),
+	Category: DS.attr('string'),
+	Description: DS.attr('string'),
+	Image1: DS.attr('string'),
+	Image2: DS.attr('string'),
+	Image3: DS.attr('string')
+});
+
